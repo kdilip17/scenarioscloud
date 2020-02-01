@@ -32,12 +32,24 @@ projectController.getProjectById = function(req, res) {
 //get all project data from db
 projectController.getProjects = function(req, res) {
 	// use mongoose to get all projects in the database
-	Project.find(function(err, projects) {
-		// if there is an error retrieving, send the error otherwise send data
-		if (err)
-			res.send(err)
-		res.json(projects); // return all projects in JSON format
-	});
+	if(req.body && req.body.search && req.body.search.trim != ""){
+		let query = {$or:[{"projectName":{$regex: req.body.search, $options: 'i'}},
+		{"projectMembers.employeeFullName":{$regex: req.body.search, $options: 'i'}}]}
+		Project.find(query, 
+			function(err, projects){
+				// if there is an error retrieving, send the error otherwise send data
+			if (err)
+				res.send(err)
+			res.json(projects); // return all projects in JSON format
+		});
+	} else {
+		Project.find(function(err, projects) {
+			// if there is an error retrieving, send the error otherwise send data
+			if (err)
+				res.send(err)
+			res.json(projects); // return all projects in JSON format
+		});
+	}
 };
 
 // update project and send back all projects after creation

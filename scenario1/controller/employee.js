@@ -32,12 +32,22 @@ employeeController.getEmployeeById = function(req, res) {
 //get all employee data from db
 employeeController.getEmployees = function(req, res) {
 	// use mongoose to get all employees in the database
-	Employee.find(function(err, employees) {
-		// if there is an error retrieving, send the error otherwise send data
-		if (err)
-			res.send(err)
-		res.json(employees); // return all employees in JSON format
-	});
+	if(req.body && req.body.search && req.body.search.trim != ""){
+		Employee.find({'fullName' : new RegExp(req.body.search, 'i')}, 
+			function(err, employees){
+				// if there is an error retrieving, send the error otherwise send data
+			if (err)
+				res.send(err)
+			res.json(employees); // return all employees in JSON format
+		});
+	} else {
+		Employee.find(function(err, employees) {
+			// if there is an error retrieving, send the error otherwise send data
+			if (err)
+				res.send(err)
+			res.json(employees); // return all employees in JSON format
+		});
+	}
 };
 
 // update employee and send back all employees after creation
