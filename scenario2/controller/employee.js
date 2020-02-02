@@ -4,7 +4,6 @@ var employeeController = {};
 
 // create employee and send back all employees after creation
 employeeController.createEmployee = function(req, res) {
-	console.log(req.decoded);
     // create mongose method to create a new record into collection
     Employee.create(req.body, function(err, employee) {
         if (err)

@@ -54,7 +54,6 @@ projectController.getProjects = function(req, res) {
 
 //get all project data from db based on search
 projectController.getProjectsBySearch = function(req, res) {
-	console.log(req.decoded)
 	if(req.decoded && req.decoded.designation){
 		if(req.params.type == "EBPL" && req.decoded.designation !== "PL"){
 			return res.json({
