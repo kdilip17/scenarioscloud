@@ -1,0 +1,408 @@
+{
+	"info": {
+		"_postman_id": "7ab6bf68-2575-42db-9f4e-c3027524a780",
+		"name": "cloudfix/scenario1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "employees",
+			"item": [
+				{
+					"name": "createEmployee",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNTgwNjIzMzI0LCJleHAiOjE1ODA3MDk3MjR9.d9-zU6Y5UiE7Wheebr6OeQCglbxxWP7aKt7n9WLQsGU",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"fullName\": \"Praveen Sam\",\n\t\"fName\": \"Praveen\",\n\t\"lName\": \"Sam\",\n\t\"email\": \"prav4@gmail.com\",\n\t\"password\":\"123456\",\n\t\"phoneNo\": \"9629914529\",\n\t\"doj\": \"2020-02-02T22:44:30.652Z\",\n\t\"dob\": \"1991-06-02T22:44:30.652Z\",\n\t\"designation\":\"PL\",\n\t\"experienceMonths\": 72,\n\t\"address\":{\n\t\t\"street\":\"3 rd main road\",\n\t\t\"city\":\"chennai\",\n\t\t\"zip\":\"600042\"\n\t}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/employees/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"employees",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getEmployeeById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/employees/5e3692be05e26835982a3aa0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"employees",
+								"5e3692be05e26835982a3aa0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "employeeList",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"search\":\"dilip\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/employees",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"employees"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateEmployee",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"fullName\": \"Bharathi Kannamma\",\n\t\"address\":{\n\t\t\"street\":\"3 rd main road\",\n\t\t\"city\":\"tenkasi\",\n\t\t\"zip\":\"600042\"\n\t}\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/employees/5e3692be05e26835982a3aa0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"employees",
+								"5e3692be05e26835982a3aa0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteEmployee",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/employees/5e35d0d7bc6d0d4d5c947049",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"employees",
+								"5e35d0d7bc6d0d4d5c947049"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "projects",
+			"item": [
+				{
+					"name": "createProject",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"projectName\": \"Test Project 8\",\n\t\"projectLead\": {\n\t\t\"employeeId\": \"5e365b4e228bc618fc627ff6\",\n\t\t\"employeeFullName\":\"Ramesh\"\n\t},\n\t\"projectMembers\":[{\n\t\t\"role\":\"QA\",\n\t\t\"employeeId\": \"5e365b80228bc618fc627ff7\",\n\t\t\"employeeFullName\":\"rajith\"\n\t},\n\t{\n                \"role\": \"DEVELOPER\",\n                \"employeeId\": \"5e35d108bc6d0d4d5c94704a\",\n                \"employeeFullName\": \"dilipkumar selvam\"\n            }],\n\t\"startDate\":\"2020-02-02T22:44:30.652Z\",\n\t\"endDate\":\"2020-02-04T22:44:30.652Z\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/projects/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"projects",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getProjectById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/projects/5e365a914728e34320b001c4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"projects",
+								"5e365a914728e34320b001c4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "projectList",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"search\":\"Test\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/projects",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"projects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateProject",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n        \"projectName\": \"Test Project 9\",\r\n        \"projectLead\": {\r\n\t\t\t\"employeeId\": \"5e365a794728e34320b001c3\",\r\n\t\t\t\"employeeFullName\":\"ravi mehra 2\"\r\n\t\t},\r\n        \"projectMembers\": [\r\n            {\r\n                \"role\": \"DEVELOPER\",\r\n                \"employeeId\": \"5e35d4a6e32a284cdc77849e\",\r\n                \"employeeFullName\": \"dada\"\r\n            },\r\n            {\r\n                \"role\": \"DEVELOPER\",\r\n                \"employeeId\": \"5e35d108bc6d0d4d5c94704a\",\r\n                \"employeeFullName\": \"dilipkumar selvam\"\r\n            }\r\n        ],\r\n        \"startDate\": \"2020-02-02T22:44:30.652Z\",\r\n        \"endDate\": \"2020-02-04T22:44:30.652Z\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/projects/5e365a914728e34320b001c4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"projects",
+								"5e365a914728e34320b001c4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteProject",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/projects/5e365a914728e34320b001c4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"projects",
+								"5e365a914728e34320b001c4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "searchByCreteria",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRpbGlwQGdtYWlsLmNvbSIsImRlc2lnbmF0aW9uIjoiU1NFIiwiaWQiOiI1ZTM1ZDEwOGJjNmQwZDRkNWM5NDcwNGEiLCJpYXQiOjE1ODA2MzI1MDksImV4cCI6MTU4MDcxODkwOX0.l73uucb6rKiiqIyJCcRIHwQk19hnDYJT7Mra2K0HiQE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"search\":\"test\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/projects/search/EBPL",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"projects",
+								"search",
+								"EBPL"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "admin",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\":\"dilip@gmail.com\",\n\t\"password\":\"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
