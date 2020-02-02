@@ -7,5 +7,7 @@ router.get('/:project_id', (req,res)=>projectController.getProjectById(req, res)
 router.put('/:project_id', (req,res)=>projectController.updateProject(req, res));
 router.delete('/:project_id', (req,res)=>projectController.deleteProject(req, res));
 router.post('/', (req,res)=>projectController.getProjects(req, res));
+// search
+router.post('/search/:type', (req,res)=>projectController.getProjectsBySearch(req, res));
 
 module.exports = router;

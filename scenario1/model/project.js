@@ -5,11 +5,21 @@ ProjectSchema = new Schema({
         type:String,
         required: true,
     },
+    projectLead: {
+        employeeId: {
+            type:String,
+            required: true,
+        },
+        employeeFullName: {
+            type:String,
+            required: true,
+        }
+    },
     projectMembers: [{
         role: {
             type:String,
             required: true,
-            enum: ["LEAD","DEVELOPER","QA"]
+            enum: ["DEVELOPER","QA"]
         },
         employeeId: {
             type:String,

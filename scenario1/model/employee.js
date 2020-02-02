@@ -38,7 +38,7 @@ EmpSchema = new Schema({
     designation: {
         type:String,
         required: true,
-        enum: ["TL","SE","SSE","CEO","HR","PM","BA","CTO","AD"]
+        enum: ["TL","SE","SSE","CEO","HR","PM","BA","CTO","AD","PL"]
     },
     experienceMonths: {
         type:Number,

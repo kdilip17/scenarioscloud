@@ -52,6 +52,55 @@ projectController.getProjects = function(req, res) {
 	}
 };
 
+//get all project data from db based on search
+projectController.getProjectsBySearch = function(req, res) {
+	// use mongoose to get all projects in the database
+	if(req.body && req.body.search && req.body.search.trim != ""){
+		let selectedValues = {};
+		let query = {};
+		let type = req.params.type
+		if(type == "PBE" || type == "PBPL" || type == "EBPL"){
+			selectedValues = { 
+				projectName: 1,
+				_id: 1, 
+				startDate: 1,
+				endDate: 1
+			}
+			query = { 'projectLead.employeeFullName' : { '$regex' : req.body.search, '$options' : 'i' } }
+			
+			if(type == "PBE" || type == "EBPL"){
+				if(type == "EBPL"){
+					selectedValues.projectMembers = 1;
+				} else {
+					selectedValues.projectLead = 1;
+				}
+				query = { 'projectMembers.employeeFullName' : { '$regex' : req.body.search, '$options' : 'i' } }
+			}
+		} else if(type == "EBP"){
+			selectedValues = { 
+				_id: 0,
+				projectName: 1,
+				projectMembers: 1
+			}
+			query = { 'projectName' : { '$regex' : req.body.search, '$options' : 'i' } }
+		}
+		Project.find(query, selectedValues,
+			function(err, projects){
+				// if there is an error retrieving, send the error otherwise send data
+			if (err)
+				res.send(err)
+			res.json(projects); // return all projects in JSON format
+		});
+	} else {
+		Project.find(function(err, projects) {
+			// if there is an error retrieving, send the error otherwise send data
+			if (err)
+				res.send(err)
+			res.json(projects); // return all projects in JSON format
+		});
+	}
+};
+
 // update project and send back all projects after creation
 projectController.updateProject = function(req, res) {
 	// create mongose method to update a existing record into collection
