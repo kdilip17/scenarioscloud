@@ -11,7 +11,7 @@ employeeController.createEmployee = async function(req, res) {
       return employees;
     }
   } catch (error) {
-      throw new TypeError(error.message);
+    throw new TypeError(error.message);
   }
 };
 
@@ -47,7 +47,7 @@ employeeController.updateEmployee = async function(req, res) {
   try {
     // create mongose method to update a existing record into collection
     const id = req.params.employee_id;
-    const data =req.payload
+    const data = req.payload;
     const employee = await Employee.findByIdAndUpdate(id, data);
     return "Successfully! Employee updated - " + employee.fullName;
   } catch (error) {
@@ -71,19 +71,44 @@ employeeController.deleteEmployee = async function(req, res) {
 //
 employeeController.getEmployeeLocation = async function(req) {
   try {
-    const googleMapsClient = require("@google/maps").createClient({
-      key: "AIzaSyAeqZDLA0iuAJ70jh_sGugzHlA4rSVwV7c",
-      Promise: Promise
-    });
-    googleMapsClient
-      .geocode({ address: "1600 Amphitheatre Parkway, Mountain View, CA" })
-      .asPromise()
-      .then(response => {
-        console.log(response.json.results);
-      })
-      .catch(err => {
-        console.log(err);
+    let googleMap = false;
+    if (!googleMap) {
+      let geoResponse = await require("../config/geo.json");
+      console.log(geoResponse);
+      if (
+        geoResponse &&
+        geoResponse.status == "OK" &&
+        geoResponse.results.length > 0
+      ) {
+        return geoResponse.results[0].geometry;
+      }
+    } else {
+      const googleMapsClient = require("@google/maps").createClient({
+        key: "AIzaSyAeqZDLA0iuAJ70jh_sG",
+        Promise: Promise
       });
+      googleMapsClient
+        .geocode({ address: "1600 Amphitheatre Parkway, Mountain View, CA" })
+        .asPromise()
+        .then(response => {
+          let geoResponse = response.json.results;
+          if (
+            geoResponse &&
+            geoResponse.length > 0 &&
+            geoResponse.status == "OK"
+          ) {
+            return geoResponse[0].geometry;
+          } else {
+            return {
+              status: "FAIL",
+              message: "Error Fetching Results"
+            };
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
   } catch (error) {
     throw new TypeError(error.message);
   }
