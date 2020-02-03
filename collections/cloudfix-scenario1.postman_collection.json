@@ -31,6 +31,51 @@
 						],
 						"body": {
 							"mode": "raw",
+							"raw": "{\n\t\"fullName\": \"Praveen Sam\",\n\t\"fName\": \"Praveen\",\n\t\"lName\": \"Sam\",\n\t\"email\": \"prav4@gmail.com\",\n\t\"password\":\"123456\",\n\t\"phoneNo\": \"9629914529\",\n\t\"doj\": \"2020-02-02T22:44:30.652Z\",\n\t\"dob\": \"1991-06-02T22:44:30.652Z\",\n\t\"designation\":\"PL\",\n\t\"experienceMonths\": 72\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/employees/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"employees",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createEmployee scenario4",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNTgwNjIzMzI0LCJleHAiOjE1ODA3MDk3MjR9.d9-zU6Y5UiE7Wheebr6OeQCglbxxWP7aKt7n9WLQsGU",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
 							"raw": "{\n\t\"fullName\": \"Praveen Sam\",\n\t\"fName\": \"Praveen\",\n\t\"lName\": \"Sam\",\n\t\"email\": \"prav4@gmail.com\",\n\t\"password\":\"123456\",\n\t\"phoneNo\": \"9629914529\",\n\t\"doj\": \"2020-02-02T22:44:30.652Z\",\n\t\"dob\": \"1991-06-02T22:44:30.652Z\",\n\t\"designation\":\"PL\",\n\t\"experienceMonths\": 72,\n\t\"address\":{\n\t\t\"street\":\"3 rd main road\",\n\t\t\"city\":\"chennai\",\n\t\t\"zip\":\"600042\"\n\t}\n}",
 							"options": {
 								"raw": {
@@ -122,6 +167,42 @@
 						],
 						"body": {
 							"mode": "raw",
+							"raw": "{\n\t\"fullName\": \"Bharathi Kannamma\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/employees/5e3692be05e26835982a3aa0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"employees",
+								"5e3692be05e26835982a3aa0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateEmployee scenario4",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
 							"raw": "{\n\t\"fullName\": \"Bharathi Kannamma\",\n\t\"address\":{\n\t\t\"street\":\"3 rd main road\",\n\t\t\"city\":\"tenkasi\",\n\t\t\"zip\":\"600042\"\n\t}\n}",
 							"options": {
 								"raw": {
@@ -168,7 +249,23 @@
 					"name": "getEmployeeLocation",
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\t\"street\":\"1600 Amphitheatre Parkway, Mountain View\",\n\t\t\"city\":\"CA\",\n\t\t\"zip\":\"600042\"\n\t}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
 							"raw": "http://localhost:3000/employees/location",
 							"protocol": "http",
